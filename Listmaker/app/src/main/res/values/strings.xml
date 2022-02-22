@@ -9,7 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    
+
     <string name="name_of_list">What is the name of your list?</string>
     <string name="create_list">Create</string>
 </resources>
