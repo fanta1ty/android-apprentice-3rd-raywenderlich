@@ -12,4 +12,7 @@
 
     <string name="name_of_list">What is the name of your list?</string>
     <string name="create_list">Create</string>
+    
+    <string name="task_to_add">What is the task you want to add?</string>
+    <string name="add_task">Add</string>
 </resources>

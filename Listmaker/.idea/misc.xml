@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.2953125" />
+        <entry key="app/src/main/res/layout/activity_list_detail.xml" value="0.26875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12395833333333334" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.22735507246376813" />
         <entry key="app/src/main/res/layout/list_selection_view_holder.xml" value="0.22735507246376813" />
+        <entry key="app/src/main/res/layout/task_view_holder.xml" value="0.2586050724637681" />
       </map>
     </option>
   </component>

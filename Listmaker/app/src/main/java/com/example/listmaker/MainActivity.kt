@@ -1,11 +1,13 @@
 package com.example.listmaker
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
@@ -22,6 +24,19 @@ class MainActivity : AppCompatActivity(),
     lateinit var listsRecyclerView: RecyclerView
 
     val listDataManager: ListDataManager = ListDataManager(this)
+
+    private var resultDetailLauncher
+    = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+
+            data?.let {
+                val list = it.getParcelableExtra<TaskList>(INTENT_LIST_KEY) as TaskList
+                listDataManager.saveList(list)
+                updateLists()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +100,13 @@ class MainActivity : AppCompatActivity(),
     private fun showListDetail(list: TaskList) {
         val listDetailIntent = Intent(this, ListDetailActivity::class.java)
         listDetailIntent.putExtra(INTENT_LIST_KEY, list)
-        startActivity(listDetailIntent)
+
+        resultDetailLauncher.launch(listDetailIntent)
+    }
+
+    private fun updateLists() {
+        val lists = listDataManager.readLists()
+        listsRecyclerView.adapter = ListSelectionRecyclerViewAdapter(lists, this)
     }
 
     override fun listItemClicked(list: TaskList) {
